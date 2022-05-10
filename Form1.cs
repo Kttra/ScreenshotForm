@@ -40,13 +40,19 @@ namespace ScreenshotForm
         private void ScreenToBox()
         {
             Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
-            Graphics g = Graphics.FromImage(bmp);
-            g.CopyFromScreen(0, 0, 0, 0, bmp.Size);
+
+            //Creating a New Graphics Object
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                //Copying Image from The Screen
+                g.CopyFromScreen(0, 0, 0, 0, bmp.Size);
+            }
+
             //If you have a picture box in the form
             //PictureBox1.Image = Bitmap;
         }
         //Screenshot your computer screen
-        private void Screenshot()
+        private void DesktopScreenshot()
         {
             //Hide this form and temporarily pause for 1 second
             this.Hide();
@@ -59,13 +65,14 @@ namespace ScreenshotForm
             Rectangle captureRectangle = Screen.AllScreens[0].Bounds;
 
             //Creating a New Graphics Object
-            Graphics captureGraphics = Graphics.FromImage(bmp);
-
-            //Copying Image from The Screen
-            captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                //Copying Image from The Screen
+                g.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
+            }
 
             //Saving the Image File
-            bmp.Save(@"Screenshot" + ImageName.Text + ".bmp");
+            bmp.Save(@"PC" + ImageName.Text + ".bmp");
 
             //Display the form again
             this.Show();
@@ -73,16 +80,11 @@ namespace ScreenshotForm
         //Screenshot the entire form (window)
         private void ScreenshotForm()
         {
-            Rectangle bounds = Screen.GetBounds(Point.Empty);
-
-            using (Bitmap bmp = new Bitmap(bounds.Width, bounds.Height))
+            var form = Form.ActiveForm;
+            using (var bmp = new Bitmap(form.Width, form.Height))
             {
-                using (Graphics g = Graphics.FromImage(bmp))
-                {
-                    g.CopyFromScreen(Point.Empty, Point.Empty, bounds.Size);
-                }
-                //will save to working directory (C:\Users\{user}\source\repos\{project}\{project}\bin\Debug )
-                bmp.Save(@"Screenshot" + ImageName.Text + ".bmp");
+                form.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                bmp.Save(@"FormScreenshot.png");
             }
         }
     }
