@@ -14,3 +14,34 @@ Below is the image outputted ny the program itself. By default, the image is sav
 <p align="center">
 <img src="https://user-images.githubusercontent.com/100814612/167540275-08da3b0f-7118-4be3-8d03-d38f9fbb6070.png"><img>
 </p>
+
+**Other Methods**
+----------------
+Although this program is mainly focused on capturing an image in a panel, I decided to include other screenshot methods. In the source code, there is a method to screenshot your desktop screen. In addition, I have also included a method that will draw the desktop image to a winform picture box.
+
+```csharp
+private void Screenshot()
+{
+    //Hide this form and temporarily pause for 1 second
+    this.Hide();
+    System.Threading.Thread.Sleep(1000);
+
+    //Creating a new Bitmap object
+    Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+
+    //Creating a Rectangle object which will capture our screen
+    Rectangle captureRectangle = Screen.AllScreens[0].Bounds;
+
+    //Creating a New Graphics Object
+    Graphics captureGraphics = Graphics.FromImage(bmp);
+
+    //Copying Image from The Screen
+    captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
+
+    //Saving the Image File
+    bmp.Save(@"Screenshot" + ImageName.Text + ".bmp");
+
+    //Display the form again
+    this.Show();
+}
+```
