@@ -17,7 +17,11 @@ Below is the image outputted ny the program itself. By default, the image is sav
 
 **Other Methods**
 ----------------
-Although this program is mainly focused on capturing an image in a panel, I have decided to include other screenshot methods. In the source code, there is a method to screenshot your desktop screen, a method to draw the desktop image to a winform picture box, and a method to screenshot the entire form.
+Although this program is mainly focused on capturing an image in a panel, I have decided to include other screenshot methods. In the source code, there is a method to screenshot your desktop screen, a method to draw the desktop image to a winform picture box, and a method to screenshot the entire form. Below is a summary of what types of methods are included in this project.
+- Panel Capture
+- Screen to Picture Box
+- Form Capture
+- Desktop Capture
 
 ```csharp
 private void Screenshot()
