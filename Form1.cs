@@ -18,6 +18,15 @@ namespace ScreenshotForm
 
         private void BtnScreenshot_Click(object sender, EventArgs e)
         {
+            CapturePanel();
+
+            //If you want to screenshot your copmuter screen call Screenshot();
+
+            MessageBox.Show("Image saved.", "Success");
+        }
+        //Capture the winform panel
+        private void CapturePanel()
+        {
             using Bitmap bmp = new Bitmap(ScreenPanel.Width, ScreenPanel.Height);
             ScreenPanel.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
             //Save location to images folder: @"/images", by default we will save at executable directory
@@ -26,9 +35,40 @@ namespace ScreenshotForm
             //If you want to save as jpg or png
             //bmp.Save(@"" + ImageName.Text + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
             //bmp.Save(@"a" + ImageName.Text + ".png", System.Drawing.Imaging.ImageFormat.Png);
-
-            MessageBox.Show("Image saved.", "Success");
         }
+        //Screenshot to a picture box
+        private void ScreenToBox()
+        {
+            Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+            Graphics g = Graphics.FromImage(bmp);
+            g.CopyFromScreen(0, 0, 0, 0, bmp.Size);
+            //If you have a picture box in the form
+            //PictureBox1.Image = Bitmap;
+        }
+        //Screenshot your computer screen
+        private void Screenshot()
+        {
+            //Hide this form and temporarily pause for 1 second
+            this.Hide();
+            System.Threading.Thread.Sleep(1000);
 
+            //Creating a new Bitmap object
+            Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+
+            //Creating a Rectangle object which will capture our screen
+            Rectangle captureRectangle = Screen.AllScreens[0].Bounds;
+
+            //Creating a New Graphics Object
+            Graphics captureGraphics = Graphics.FromImage(bmp);
+
+            //Copying Image from The Screen
+            captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
+
+            //Saving the Image File
+            bmp.Save(@"Screenshot" + ImageName.Text + ".bmp");
+
+            //Display the form again
+            this.Show();
+        }
     }
 }
