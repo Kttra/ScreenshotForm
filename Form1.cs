@@ -70,5 +70,20 @@ namespace ScreenshotForm
             //Display the form again
             this.Show();
         }
+        //Screenshot the entire form (window)
+        private void ScreenshotForm()
+        {
+            Rectangle bounds = Screen.GetBounds(Point.Empty);
+
+            using (Bitmap bmp = new Bitmap(bounds.Width, bounds.Height))
+            {
+                using (Graphics g = Graphics.FromImage(bmp))
+                {
+                    g.CopyFromScreen(Point.Empty, Point.Empty, bounds.Size);
+                }
+                //will save to working directory (C:\Users\{user}\source\repos\{project}\{project}\bin\Debug )
+                bmp.Save(@"Screenshot" + ImageName.Text + ".bmp");
+            }
+        }
     }
 }
