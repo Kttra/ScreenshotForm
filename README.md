@@ -1,2 +1,16 @@
 # ScreenshotForm
-C# program that screenshots whatever is on top of the panel in a winform (uses .NET 6).
+C# program that screenshots whatever is on top of the panel in a winform (uses .NET 6). Created because there are a lot of programs online that show how to screenshot a computer's desktop, but there's not much information on how to screenshot in a winform specifically. Knowing how to screenshot specific regions in a winform is powerful as it allows us to archive data.
+
+This program uses the Control.Draggable nuget package in order to make the controls in the form draggable. You can drag around the buttons, combo box, check box, button, label, textbox, and colored panel. The program can screenshot any changes you made. Once you are ready to take a screenshot, add in a name in the textbox on the bottom and press on the screenshot button.
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/100814612/167539360-f7a9fe22-6ef1-4555-afc1-66b039e6d9a3.png"><img>
+</p>
+
+**Screenshot**
+----------------
+Below is the image outputted ny the program itself. By default, the image is saved as a bmp file (a Bitmap image file). In the code, I have provided examples of how to change it to save as a jpg or png file instead as those are more common image types that are likely to be more compatible with other software.
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/100814612/167540275-08da3b0f-7118-4be3-8d03-d38f9fbb6070.png"><img>
+</p>
