@@ -49,3 +49,7 @@ private void Screenshot()
     this.Show();
 }
 ```
+
+**Related Project**
+----------------
+[Screenshot Webpage](https://github.com/Kttra/ScreenshotWebpage) - Another screen capture application. This one is different in the sense that it screenshots an entire webpage.
