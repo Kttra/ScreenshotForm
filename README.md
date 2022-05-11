@@ -50,6 +50,10 @@ private void Screenshot()
 }
 ```
 
-**Related Project**
+**Related Projects**
 ----------------
+Below are other similar projects related to this application.
+
 [Screenshot Webpage](https://github.com/Kttra/ScreenshotWebpage) - Another screen capture application. This one is different in the sense that it screenshots an entire webpage.
+
+[Ratio Calculator](https://github.com/Kttra/RatioCalculator) - This project may seem unrelated to this one, but it uses some of the methods here to create a pseudo-transparent background in order to select a rectangular region giving us the ratio of the selected region.
